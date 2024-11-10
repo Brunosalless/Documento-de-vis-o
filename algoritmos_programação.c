@@ -1,48 +1,30 @@
 #include <stdio.h>
 #include <string.h>
 
-// Funcao para classificar a prioridade de acordo com o impacto no usuario e a viabilidade tecnica
-const char* classificar_prioridade(const char* impacto_usuario, const char* viabilidade_tecnica) {
-    if (strcmp(impacto_usuario, "alto") == 0 && strcmp(viabilidade_tecnica, "alta") == 0) {
-        return "Alta";
-    } else if (strcmp(impacto_usuario, "medio") == 0 || strcmp(viabilidade_tecnica, "media") == 0) {
-        return "Media";
-    } else {
-        return "Baixa";
-    }
-}
-
 int main() {
-    // Estrutura para definir os requisitos do projeto
-    struct Requisito {
-        char nome[50];
-        char impacto_usuario[10];
-        char viabilidade_tecnica[10];
-    };
+    char requisito[10];  // Variavel para armazenar o codigo do requisito
 
-    // Exemplo de requisitos com impacto no usuario e viabilidade tecnica
-    struct Requisito requisitos[] = {
-        {"Registro de Usuario", "alto", "alta"},
-        {"Autenticacao", "alto", "media"},
-        {"Educacao Financeira", "medio", "baixa"},
-        {"Relatorios Financeiros", "medio", "media"},
-        {"Gamificacao", "alto", "baixa"}
-    };
+    // Solicitando o codigo do requisito
+    printf("Insira o codigo do requisito (ex: RF001, RNF001): ");
+    scanf("%s", requisito);
 
-    int tamanho = sizeof(requisitos) / sizeof(requisitos[0]);
-
-    // Cabecalho da tabela para exibir os resultados
-    printf("%-30s %-20s %-25s %-15s\n", "Requisito", "Impacto Usuario", "Viabilidade Tecnica", "Prioridade");
-    printf("----------------------------------------------------------------------------------------------------------\n");
-
-    // Classificar a prioridade de cada requisito e imprimir de forma organizada
-    for (int i = 0; i < tamanho; i++) {
-        const char* prioridade = classificar_prioridade(requisitos[i].impacto_usuario, requisitos[i].viabilidade_tecnica);
-        printf("%-30s %-20s %-25s %-15s\n", 
-               requisitos[i].nome, 
-               requisitos[i].impacto_usuario, 
-               requisitos[i].viabilidade_tecnica, 
-               prioridade);
+    // Verificando a prioridade do requisito
+    if (strcmp(requisito, "RF001") == 0 || strcmp(requisito, "RF003") == 0 ||
+        strcmp(requisito, "RF005") == 0 || strcmp(requisito, "RF008") == 0) {
+        printf("O requisito %s e de ALTA prioridade.\n", requisito);
+    } else if (strcmp(requisito, "RF002") == 0 || strcmp(requisito, "RF004") == 0 ||
+               strcmp(requisito, "RF006") == 0 || strcmp(requisito, "RF007") == 0 ||
+               strcmp(requisito, "RNF001") == 0 || strcmp(requisito, "RNF002") == 0 ||
+               strcmp(requisito, "RNF003") == 0 || strcmp(requisito, "RNF004") == 0 ||
+               strcmp(requisito, "RNF005") == 0 || strcmp(requisito, "RNF006") == 0 ||
+               strcmp(requisito, "RNF007") == 0 || strcmp(requisito, "RNF009") == 0 ||
+               strcmp(requisito, "RNF010") == 0) {
+        printf("O requisito %s e de MEDIA prioridade.\n", requisito);
+    } else if (strcmp(requisito, "RF009") == 0 || strcmp(requisito, "RF010") == 0 ||
+               strcmp(requisito, "RNF008") == 0) {
+        printf("O requisito %s e de BAIXA prioridade.\n", requisito);
+    } else {
+        printf("Requisito %s nao encontrado na lista.\n", requisito);
     }
 
     return 0;
